@@ -1,12 +1,22 @@
+"use client";
+import { useEffect } from "react";
 
+import { useRouter } from "next/router";
 export default function Home() {
+  const isUserloggedIn = false;
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isUserloggedIn) {
+      router.push("/dashboard");
+    } else {
+      router.push("/login");
+    }
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-     
-  <h1>Next.js</h1>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nemo quasi nam provident repellendus iure, numquam earum iste dolores saepe aspernatur voluptatum officia nesciunt sunt, vel reprehenderit necessitatibus ad libero.</p>
-
-     
+      <h1>Karka Karga - Case</h1>
     </main>
   );
 }

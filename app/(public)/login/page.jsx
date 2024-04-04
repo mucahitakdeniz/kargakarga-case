@@ -1,11 +1,18 @@
 "use client";
 import React, { useState } from "react";
+import Link from "next/link";
+import { login } from "@/redux/hooks/useAuth";
 
 const login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    login({
+      email: email,
+      password: password,
+    });
+  };
   return (
     <div className="flex justify-center items-center bg-white h-screen">
       <div className="flex justify-center items-center flex-col  bg-slate-400 w-2/4 h-2/4 rounded-lg">
@@ -33,11 +40,15 @@ const login = () => {
             onChange={(e) => setPassword(e.password.value)}
           />
         </div>
-        <button className="bg-red-900 p-2 mt-3 rounded-lg w-1/4  mb-4 ">
+        <button
+          className="bg-red-900 p-2 mt-3 rounded-lg w-1/4  mb-4 "
+          onClick={handleSubmit}
+        >
           Sing in
         </button>
-        <a className="text-blue-800" href="/register">Don't you have an account? Sign up</a>
-
+        <Link passHref className="text-blue-800" href="/register">
+          Don't you have an account? Sign up
+        </Link>
       </div>
     </div>
   );
